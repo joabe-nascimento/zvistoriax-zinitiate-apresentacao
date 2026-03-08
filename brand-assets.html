@@ -78,18 +78,20 @@
         .color-hex:hover { color: var(--green); }
 
         /* Logo Grid */
-        .logos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.25rem; }
+        .logos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 1.25rem; }
         .logos-grid.icons { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
 
         .logo-card { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--dark2); transition: border-color 0.2s; }
         .logo-card:hover { border-color: rgba(34,197,94,0.3); }
 
         .logo-preview {
-            height: 170px;
+            height: 240px;
             display: flex; align-items: center; justify-content: center;
             position: relative;
+            padding: 20px;
         }
-        .logo-preview canvas { display: block; max-width: 90%; max-height: 140px; object-fit: contain; }
+        .logo-preview.tagline-preview { height: 260px; }
+        .logo-preview canvas { display: block; width: 100%; height: auto; object-fit: contain; }
         .bg-dark    { background: #0a0c12; }
         .bg-dark2   { background: #13161f; }
         .bg-white   { background: #ffffff; }
@@ -304,18 +306,17 @@
         ctx.restore();
     }
 
-    // Draw logo image centered with padding
+    // Draw logo image centered — ocupa ~85% do canvas
     function drawLogo(canvas, bg, variant) {
-        // variant: 'dark' | 'light' | 'green'
         const W = canvas.width, H = canvas.height;
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, W, H);
         drawFill(ctx, W, H, bg);
 
-        const src = (variant === 'light' || variant === 'green') ? logoForLight : logoForDark;
+        const src = variant === 'light' ? logoForLight : logoForDark;
         if (!src) return;
 
-        const pad = W * 0.1;
+        const pad = W * 0.06;
         const maxW = W - pad * 2;
         const maxH = H - pad * 2;
         const ratio = src.width / src.height;
@@ -326,34 +327,34 @@
         ctx.drawImage(src, dx, dy, dw, dh);
     }
 
-    // Draw logo + tagline below
+    // Draw logo + tagline — logo maior, tagline colada abaixo
     function drawLogoTagline(canvas, bg, variant) {
         const W = canvas.width, H = canvas.height;
         const ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, W, H);
         drawFill(ctx, W, H, bg);
 
-        const src = (variant === 'light' || variant === 'green') ? logoForLight : logoForDark;
+        const src = variant === 'light' ? logoForLight : logoForDark;
         if (!src) return;
 
-        // Logo ocupa parte superior
-        const pad = W * 0.1;
-        const logoH = H * 0.52;
+        const pad = W * 0.06;
+        const logoH = H * 0.62;
         const logoW = logoH * (src.width / src.height);
         const lx = (W - logoW) / 2;
-        const ly = H * 0.08;
+        const ly = pad;
         ctx.drawImage(src, lx, ly, logoW, logoH);
 
-        // Tagline abaixo
-        const tagSize = Math.round(W * 0.038);
+        const tagSize = Math.round(W * 0.045);
+        const gap = tagSize * 0.5;
+        const tagY = ly + logoH + gap;
+
         ctx.font = `600 ${tagSize}px Inter, -apple-system, sans-serif`;
-        const tagColor = (variant === 'light') ? 'rgba(10,12,18,0.45)'
-                       : (variant === 'green')  ? 'rgba(0,60,20,0.55)'
-                       : 'rgba(255,255,255,0.45)';
+        const tagColor = (variant === 'light') ? 'rgba(10,12,18,0.5)'
+                       : (variant === 'green')  ? 'rgba(255,255,255,0.85)'
+                       : 'rgba(255,255,255,0.5)';
         ctx.fillStyle = tagColor;
         ctx.textAlign = 'center';
-        // Letter-spacing simulation
-        drawSpaced(ctx, 'VISTORIA DE IMÓVEIS', W / 2, ly + logoH + tagSize * 1.2, tagSize * 0.22);
+        drawSpaced(ctx, 'VISTORIA DE IMÓVEIS', W / 2, tagY + tagSize * 0.85, tagSize * 0.18);
         ctx.textAlign = 'start';
     }
 
@@ -440,12 +441,12 @@
         card.className = 'logo-card';
 
         const preview = document.createElement('div');
-        preview.className = `logo-preview ${cfg.bgClass}`;
+        preview.className = `logo-preview ${cfg.bgClass}${cfg.isTagline ? ' tagline-preview' : ''}`;
 
         const pc = document.createElement('canvas');
-        if (cfg.isIcon) { pc.width = 240; pc.height = 240; }
-        else if (cfg.isTagline) { pc.width = 800; pc.height = 380; }
-        else { pc.width = 800; pc.height = Math.round(800 * 0.33); }
+        if (cfg.isIcon) { pc.width = 280; pc.height = 280; }
+        else if (cfg.isTagline) { pc.width = 900; pc.height = 420; }
+        else { pc.width = 900; pc.height = Math.round(900 * 0.32); }
 
         cfg.draw(pc, ...cfg.params);
         preview.appendChild(pc);
@@ -474,8 +475,8 @@
             btn.onclick = () => {
                 const rc = document.getElementById('render');
                 if (cfg.isIcon) { rc.width = sz; rc.height = sz; }
-                else if (cfg.isTagline) { rc.width = sz; rc.height = Math.round(sz * 0.475); }
-                else { rc.width = sz; rc.height = Math.round(sz * 0.33); }
+                else if (cfg.isTagline) { rc.width = sz; rc.height = Math.round(sz * 0.467); }
+                else { rc.width = sz; rc.height = Math.round(sz * 0.32); }
                 cfg.draw(rc, ...cfg.params);
                 const a = document.createElement('a');
                 a.download = `vistoriax-${cfg.file}-${sz}px.png`;
