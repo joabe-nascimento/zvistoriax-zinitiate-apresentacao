@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VistoriaX — Brand Assets</title>
+    <link rel="icon" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #22c55e;
+            --green-dark: #16a34a;
+            --dark: #0a0c12;
+            --dark2: #13161f;
+            --dark3: #1c2030;
+            --border: rgba(255,255,255,0.07);
+            --text: #e2e8f0;
+            --text-muted: #64748b;
+            --text-secondary: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--dark);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--dark2);
+        }
+        .header-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+        .header-logo svg { width: 34px; height: 34px; }
+        .header-logo-text { font-size: 1.15rem; font-weight: 700; color: #fff; }
+        .header-logo-text span { color: var(--green); }
+        .header-badge {
+            margin-left: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(34,197,94,0.12);
+            border: 1px solid rgba(34,197,94,0.25);
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--green);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .header-right {
+            margin-left: auto;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* MAIN */
+        main { max-width: 1120px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+        .page-hero {
+            margin-bottom: 3.5rem;
+        }
+        .page-hero h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .page-hero p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        /* SECTION */
+        .section { margin-bottom: 3.5rem; }
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* COLOR PALETTE */
+        .colors-grid { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+        .color-chip { display: flex; flex-direction: column; gap: 0.5rem; }
+        .color-swatch {
+            width: 88px; height: 88px; border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .color-swatch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .color-name { font-size: 0.78rem; font-weight: 600; color: var(--text); }
+        .color-hex {
+            font-size: 0.72rem; color: var(--text-muted);
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+        .color-hex:hover { color: var(--green); }
+
+        /* LOGOS GRID */
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.25rem;
+        }
+        .logos-grid.icons {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+        .logo-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--dark2);
+            transition: border-color 0.2s;
+        }
+        .logo-card:hover { border-color: rgba(34,197,94,0.3); }
+
+        .logo-preview {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-preview canvas {
+            display: block;
+            max-width: 90%;
+            max-height: 130px;
+        }
+        .bg-dark  { background: #0a0c12; }
+        .bg-dark2 { background: #13161f; }
+        .bg-white { background: #ffffff; }
+        .bg-green { background: #22c55e; }
+        .bg-checker {
+            background-image:
+                repeating-conic-gradient(#2a2d38 0% 25%, #1c1f2b 0% 50%);
+            background-size: 20px 20px;
+        }
+
+        .logo-card-info {
+            padding: 0.9rem 1.1rem 1rem;
+            border-top: 1px solid var(--border);
+        }
+        .logo-card-name {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+        .download-btns { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+        .btn-dl {
+            padding: 0.32rem 0.7rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-dl:hover {
+            border-color: var(--green);
+            color: var(--green);
+            background: rgba(34,197,94,0.06);
+        }
+
+        /* TYPOGRAPHY */
+        .type-row {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .type-row:last-child { border-bottom: none; }
+        .type-sample { flex: 1; }
+        .type-meta { font-size: 0.72rem; color: var(--text-muted); white-space: nowrap; font-family: monospace; }
+
+        /* TOAST */
+        .toast {
+            position: fixed; bottom: 2rem; right: 2rem;
+            background: var(--green); color: #fff;
+            padding: 0.6rem 1.2rem; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 600;
+            z-index: 9999; opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; }
+
+        @media (max-width: 600px) {
+            main { padding: 2rem 1rem; }
+            header { padding: 1rem 1.25rem; }
+            .logos-grid { grid-template-columns: 1fr; }
+            .logos-grid.icons { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a class="header-logo" href="/">
+        <svg viewBox="0 0 48 48" fill="none">
+            <path d="M7 13 L24 40 L41 13" stroke="#22c55e" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="header-logo-text">Vistoria<span>X</span></div>
+        <span class="header-badge">Brand Assets</span>
+    </a>
+    <div class="header-right">Todos os arquivos são gratuitos para uso institucional</div>
+</header>
+
+<main>
+    <div class="page-hero">
+        <h1>Brand Assets <span style="color:var(--green)">VistoriaX</span></h1>
+        <p>Baixe a identidade visual oficial em PNG de alta resolução. Use os logos e cores corretas para representar a marca com fidelidade.</p>
+    </div>
+
+    <!-- ── CORES ── -->
+    <section class="section">
+        <div class="section-label">Paleta de Cores</div>
+        <div class="colors-grid">
+            <div class="color-chip">
+                <div class="color-swatch" style="background:#22c55e" onclick="copyColor('#22c55e',this)"></div>
+                <div class="color-name">Verde Principal</div>
+                <div class="color-hex" onclick="copyColor('#22c55e',this)">#22c55e</div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background:#16a34a" onclick="copyColor('#16a34a',this)"></div>
+                <div class="color-name">Verde Escuro</div>
+                <div class="color-hex" onclick="copyColor('#16a34a',this)">#16a34a</div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background:#0a0c12" onclick="copyColor('#0a0c12',this)"></div>
+                <div class="color-name">Preto Principal</div>
+                <div class="color-hex" onclick="copyColor('#0a0c12',this)">#0a0c12</div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background:#13161f" onclick="copyColor('#13161f',this)"></div>
+                <div class="color-name">Cinza Escuro</div>
+                <div class="color-hex" onclick="copyColor('#13161f',this)">#13161f</div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background:#ffffff; border:1px solid #333" onclick="copyColor('#ffffff',this)"></div>
+                <div class="color-name">Branco</div>
+                <div class="color-hex" onclick="copyColor('#ffffff',this)">#ffffff</div>
+            </div>
+            <div class="color-chip">
+                <div class="color-swatch" style="background:#64748b" onclick="copyColor('#64748b',this)"></div>
+                <div class="color-name">Cinza Texto</div>
+                <div class="color-hex" onclick="copyColor('#64748b',this)">#64748b</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── LOGO HORIZONTAL ── -->
+    <section class="section">
+        <div class="section-label">Logo Horizontal</div>
+        <div class="logos-grid" id="grid-horizontal"></div>
+    </section>
+
+    <!-- ── LOGO COMPLETA COM TAGLINE ── -->
+    <section class="section">
+        <div class="section-label">Logo Completa — com tagline</div>
+        <div class="logos-grid" id="grid-tagline"></div>
+    </section>
+
+    <!-- ── ÍCONE ── -->
+    <section class="section">
+        <div class="section-label">Ícone</div>
+        <div class="logos-grid icons" id="grid-icon"></div>
+    </section>
+
+    <!-- ── TIPOGRAFIA ── -->
+    <section class="section">
+        <div class="section-label">Tipografia</div>
+        <div class="type-row">
+            <div class="type-sample" style="font-size:2.2rem;font-weight:800">VistoriaX</div>
+            <div class="type-meta">Inter 800 — Título principal</div>
+        </div>
+        <div class="type-row">
+            <div class="type-sample" style="font-size:1.4rem;font-weight:700">Heading — Relatório de Vistoria</div>
+            <div class="type-meta">Inter 700 — Subtítulo</div>
+        </div>
+        <div class="type-row">
+            <div class="type-sample" style="font-size:1rem;font-weight:500;color:#94a3b8">Texto corrido para uso em documentos e e-mails.</div>
+            <div class="type-meta">Inter 500 — Corpo</div>
+        </div>
+        <div class="type-row">
+            <div class="type-sample" style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#22c55e">VISTORIA DE IMÓVEIS</div>
+            <div class="type-meta">Inter 700 Uppercase — Label</div>
+        </div>
+    </section>
+</main>
+
+<div class="toast" id="toast">Copiado!</div>
+<canvas id="render" style="display:none"></canvas>
+
+<script>
+    const G = '#22c55e';
+    const DARK = '#0a0c12';
+    const WHITE = '#ffffff';
+    const FONT = 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+
+    /* ──────────────────────────────────────────
+       DRAW FUNCTIONS
+    ────────────────────────────────────────── */
+
+    function drawV(ctx, x, y, size, color) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + size * 0.5, y + size * 0.82);
+        ctx.lineTo(x + size, y);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = size * 0.145;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    function fillBackground(ctx, W, H, bg) {
+        if (!bg) return;
+        ctx.save();
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+        ctx.restore();
+    }
+
+    // Horizontal: icon + VistoriaX
+    function drawHorizontal(canvas, bg, textColor) {
+        const W = canvas.width, H = canvas.height;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, W, H);
+        fillBackground(ctx, W, H, bg);
+
+        const iconH = H * 0.52;
+        const iconW = iconH;
+        const pad = W * 0.07;
+        const cy = (H - iconH * 0.82) / 2;
+        drawV(ctx, pad, cy, iconH, G);
+
+        const fontSize = H * 0.36;
+        ctx.font = `800 ${fontSize}px ${FONT}`;
+        const tx = pad + iconW + pad * 0.8;
+        const ty = H * 0.64;
+        ctx.fillStyle = textColor;
+        ctx.fillText('Vistoria', tx, ty);
+        const vw = ctx.measureText('Vistoria').width;
+        ctx.fillStyle = G;
+        ctx.fillText('X', tx + vw, ty);
+    }
+
+    // Tagline: icon + VistoriaX + "VISTORIA DE IMÓVEIS"
+    function drawTagline(canvas, bg, textColor) {
+        const W = canvas.width, H = canvas.height;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, W, H);
+        fillBackground(ctx, W, H, bg);
+
+        const iconH = H * 0.44;
+        const pad = W * 0.07;
+        const cy = (H - iconH * 0.82) / 2 - H * 0.06;
+        drawV(ctx, pad, cy, iconH, G);
+
+        const fontSize = H * 0.3;
+        ctx.font = `800 ${fontSize}px ${FONT}`;
+        const tx = pad + iconH + pad * 0.8;
+        const ty = H * 0.52;
+        ctx.fillStyle = textColor;
+        ctx.fillText('Vistoria', tx, ty);
+        const vw = ctx.measureText('Vistoria').width;
+        ctx.fillStyle = G;
+        ctx.fillText('X', tx + vw, ty);
+
+        const tagSize = H * 0.11;
+        ctx.font = `600 ${tagSize}px ${FONT}`;
+        const sub = textColor === WHITE ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.38)';
+        ctx.fillStyle = sub;
+        // Simulate letter-spacing by drawing char by char
+        drawSpaced(ctx, 'VISTORIA DE IMÓVEIS', tx, ty + fontSize * 0.62, tagSize * 0.18);
+    }
+
+    function drawSpaced(ctx, text, x, y, spacing) {
+        let cx = x;
+        for (const ch of text) {
+            ctx.fillText(ch, cx, y);
+            cx += ctx.measureText(ch).width + spacing;
+        }
+    }
+
+    // Icon only (square)
+    function drawIcon(canvas, bg, iconColor) {
+        const W = canvas.width, H = canvas.height;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, W, H);
+        if (bg) {
+            const r = W * 0.2;
+            ctx.beginPath();
+            ctx.moveTo(r, 0); ctx.lineTo(W - r, 0);
+            ctx.arcTo(W, 0, W, r, r);
+            ctx.lineTo(W, H - r);
+            ctx.arcTo(W, H, W - r, H, r);
+            ctx.lineTo(r, H);
+            ctx.arcTo(0, H, 0, H - r, r);
+            ctx.lineTo(0, r);
+            ctx.arcTo(0, 0, r, 0, r);
+            ctx.closePath();
+            ctx.fillStyle = bg;
+            ctx.fill();
+        }
+        const s = W * 0.5;
+        const ix = (W - s) / 2;
+        const iy = (H - s * 0.82) / 2;
+        drawV(ctx, ix, iy, s, iconColor || G);
+    }
+
+    /* ──────────────────────────────────────────
+       CARD BUILDER
+    ────────────────────────────────────────── */
+
+    function buildCard(container, cfg) {
+        const card = document.createElement('div');
+        card.className = 'logo-card';
+
+        const preview = document.createElement('div');
+        preview.className = `logo-preview ${cfg.bgClass}`;
+
+        // Preview canvas
+        const pc = document.createElement('canvas');
+        if (cfg.isIcon) { pc.width = 240; pc.height = 240; }
+        else            { pc.width = 680; pc.height = Math.round(680 * 0.38); }
+        cfg.draw(pc, ...cfg.params);
+        preview.appendChild(pc);
+        card.appendChild(preview);
+
+        // Info + buttons
+        const info = document.createElement('div');
+        info.className = 'logo-card-info';
+        const nm = document.createElement('div');
+        nm.className = 'logo-card-name';
+        nm.textContent = cfg.name;
+        info.appendChild(nm);
+
+        const btns = document.createElement('div');
+        btns.className = 'download-btns';
+
+        const sizes = cfg.isIcon
+            ? [['256×256', 256], ['512×512', 512], ['1024×1024', 1024]]
+            : [['400px', 400], ['800px', 800], ['1600px', 1600]];
+
+        sizes.forEach(([label, sz]) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn-dl';
+            btn.textContent = `↓ PNG ${label}`;
+            btn.onclick = () => {
+                const rc = document.getElementById('render');
+                if (cfg.isIcon) { rc.width = sz; rc.height = sz; }
+                else { rc.width = sz; rc.height = Math.round(sz * 0.38); }
+                cfg.draw(rc, ...cfg.params);
+                const a = document.createElement('a');
+                a.download = `vistoriax-${cfg.file}-${sz}px.png`;
+                a.href = rc.toDataURL('image/png');
+                a.click();
+            };
+            btns.appendChild(btn);
+        });
+
+        info.appendChild(btns);
+        card.appendChild(info);
+        container.appendChild(card);
+    }
+
+    /* ──────────────────────────────────────────
+       REGISTER ALL VARIANTS
+    ────────────────────────────────────────── */
+
+    function init() {
+        const H = document.getElementById('grid-horizontal');
+        const T = document.getElementById('grid-tagline');
+        const I = document.getElementById('grid-icon');
+
+        // ── HORIZONTAL ──
+        [
+            { name: 'Fundo Escuro', file: 'horizontal-escuro',       bgClass: 'bg-dark',    params: [DARK,  WHITE] },
+            { name: 'Fundo Branco', file: 'horizontal-branco',       bgClass: 'bg-white',   params: [WHITE, DARK]  },
+            { name: 'Fundo Transparente', file: 'horizontal-transp', bgClass: 'bg-checker', params: [null,  WHITE] },
+        ].forEach(c => buildCard(H, { ...c, draw: drawHorizontal, isIcon: false }));
+
+        // ── TAGLINE ──
+        [
+            { name: 'Fundo Escuro',       file: 'completa-escuro',   bgClass: 'bg-dark',    params: [DARK,  WHITE] },
+            { name: 'Fundo Branco',       file: 'completa-branco',   bgClass: 'bg-white',   params: [WHITE, DARK]  },
+            { name: 'Fundo Transparente', file: 'completa-transp',   bgClass: 'bg-checker', params: [null,  WHITE] },
+        ].forEach(c => buildCard(T, { ...c, draw: drawTagline, isIcon: false }));
+
+        // ── ICON ──
+        [
+            { name: 'Fundo Escuro',       file: 'icone-escuro',      bgClass: 'bg-dark',    params: ['#13161f', G]     },
+            { name: 'Fundo Branco',       file: 'icone-branco',      bgClass: 'bg-white',   params: [WHITE,    G]      },
+            { name: 'Fundo Verde',        file: 'icone-verde',       bgClass: 'bg-green',   params: [G,        WHITE]  },
+            { name: 'Fundo Transparente', file: 'icone-transp',      bgClass: 'bg-checker', params: [null,     G]      },
+        ].forEach(c => buildCard(I, { ...c, draw: drawIcon, isIcon: true }));
+    }
+
+    // Wait for Inter font to load before drawing
+    document.fonts.ready.then(init);
+
+    /* ──────────────────────────────────────────
+       COPY COLOR
+    ────────────────────────────────────────── */
+
+    function copyColor(hex, el) {
+        navigator.clipboard.writeText(hex).then(() => {
+            const t = document.getElementById('toast');
+            t.textContent = `${hex} copiado!`;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        });
+    }
+</script>
+</body>
+</html>
